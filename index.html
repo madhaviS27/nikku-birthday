@@ -1,18 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Heyyy</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nikku 💙</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+
+  <div class="floating-elements">
+    <!-- Balloons -->
+  <div class="balloon" style="left: 10%; animation-delay: 0s; background: #ffb3c6;"></div>
+  <div class="balloon" style="left: 25%; animation-delay: 2s; background: #ffd6a5;"></div>
+  <div class="balloon" style="left: 40%; animation-delay: 4s; background: #c3f0ff;"></div>
+  <div class="balloon" style="left: 55%; animation-delay: 1s; background: #d1c4ff;"></div>
+  <div class="balloon" style="left: 70%; animation-delay: 3s; background: #ffb8ff;"></div>
+  </div>
+
+
   <!-- Countdown overlay (shown until target time) -->
   <div id="lockOverlay" class="overlay">
     <div class="countdown-card">
-      <h1>Almost there…</h1>
+      <h1>You're almost there…</h1>
       <p class="sub">Hold tight — something special opens on</p>
-      <p class="date-target">19 Nov 2025</p>
+      <p class="date-target"><b>19 Nov 2025</b></p>
       <div id="countdown" class="countdown">
         <div><span id="days">00</span><small>Days</small></div>
         <div><span id="hours">00</span><small>Hours</small></div>
@@ -24,21 +36,13 @@
     </div>
   </div>
 
-  <!-- Main content (hidden until unlocked) -->
-  <main id="mainContent" class="hidden">
-    <header class="hero">
-      <h1>Happy Birthday, Nikku! 💙</h1>
-      <p class="hero-sub">Tap around, enjoy, and celebrate ✨</p>
-    </header>
+  <!--
+  <div class="container">
+     <h1>Counting down to your special day 💫</h1>
+    <div id="countdown"></div>
+  </div> 
+  -->
 
-    <section class="content">
-      <div class="card">
-        <h2>For you</h2>
-        <p>This page is made with love — welcome!</p>
-      </div>
-      <!-- add more sections/cards as you want -->
-    </section>
-  </main>
 
   <!-- Container for floating hearts -->
   <div id="heartContainer" class="hearts"></div>
