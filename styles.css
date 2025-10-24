@@ -1,0 +1,114 @@
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: 'Segoe UI', Roboto, sans-serif; }
+
+/* Page gradient: different aesthetic shades of blue */
+body {
+  background: linear-gradient(160deg, #cfe9ff 0%, #a6d2ff 30%, #80b7ff 60%, #6a9fff 100%);
+  color: #07263b;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Overlay when locked */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px) brightness(0.95);
+  z-index: 50;
+}
+
+.countdown-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 18px;
+  padding: 28px 30px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+}
+
+.countdown-card h1 { font-size: 1.6rem; margin-bottom: 6px; }
+.sub { color: #4b6b81; margin-bottom: 6px; }
+.date-target { font-weight: 600; color: #6a87a0; margin-bottom: 16px; }
+
+.countdown { display:flex; gap: 12px; justify-content: center; margin-bottom: 12px; }
+.countdown div {
+  background: linear-gradient(180deg,#f6fbff,#eef8ff);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 64px;
+}
+.countdown span { display:block; font-size:1.2rem; font-weight:700; }
+.countdown small { display:block; font-size:0.72rem; color:#5a7183; margin-top:4px; }
+
+.note { margin-top: 6px; color: #3a5b74; }
+.test-note { color:#7b8f9f; display:block; margin-top:8px; }
+
+/* Main content hidden until unlocked */
+.hidden { display: none; }
+
+.hero {
+  padding: 56px 24px;
+  text-align: center;
+}
+.hero h1 { font-size: 2.4rem; color: #012a52; text-shadow: 0 2px 8px rgba(10,24,40,0.12); }
+.hero-sub { color: #123a57; margin-top: 8px; opacity: 0.9; }
+
+/* Content */
+.content { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; padding: 24px; }
+.card {
+  background: rgba(255,255,255,0.88);
+  border-radius: 16px;
+  padding: 18px;
+  width: 320px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Floating hearts container */
+.hearts { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+
+/* Heart styles (created dynamically) */
+.heart {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  transform: rotate(-45deg);
+  opacity: 0.95;
+  animation: floatUp linear forwards;
+}
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: pink;
+}
+.heart:before { top: -13px; left: 0; }
+.heart:after { left: 13px; top: 0; }
+
+/* pastel variations */
+.heart.pink { background: #ffd6e8; }
+.heart.pink:before, .heart.pink:after { background: #ffd6e8; }
+.heart.lilac { background: #e9d4ff; }
+.heart.lilac:before, .heart.lilac:after { background: #e9d4ff; }
+.heart.softBlue { background: #cfe9ff; }
+.heart.softBlue:before, .heart.softBlue:after { background: #cfe9ff; }
+
+/* animation */
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(-45deg) scale(0.9); opacity: 0.95; }
+  100% { transform: translateY(-420px) rotate(-45deg) scale(1.1); opacity: 0; }
+}
+
+/* small responsive touches */
+@media (max-width:520px){
+  .countdown { gap:8px; }
+  .countdown div { min-width:56px; padding:8px; }
+}

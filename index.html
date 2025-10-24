@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Coming Soon ❤️</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Countdown overlay (shown until target time) -->
+  <div id="lockOverlay" class="overlay">
+    <div class="countdown-card">
+      <h1>Almost there…</h1>
+      <p class="sub">Hold tight — something special opens on</p>
+      <p class="date-target">19 Nov 2025</p>
+      <div id="countdown" class="countdown">
+        <div><span id="days">00</span><small>Days</small></div>
+        <div><span id="hours">00</span><small>Hours</small></div>
+        <div><span id="minutes">00</span><small>Minutes</small></div>
+        <div><span id="seconds">00</span><small>Seconds</small></div>
+      </div>
+      <p class="note">Come back when the timer hits 00:00 ✨</p>
+      <!-- <small class="test-note">(For testing, change your device time or edit target date in script.js)</small> -->
+    </div>
+  </div>
+
+  <!-- Main content (hidden until unlocked) -->
+  <main id="mainContent" class="hidden">
+    <header class="hero">
+      <h1>Happy Birthday, Nikku! 💙</h1>
+      <p class="hero-sub">Tap around, enjoy, and celebrate ✨</p>
+    </header>
+
+    <section class="content">
+      <div class="card">
+        <h2>For you</h2>
+        <p>This page is made with love — welcome!</p>
+      </div>
+      <!-- add more sections/cards as you want -->
+    </section>
+  </main>
+
+  <!-- Container for floating hearts -->
+  <div id="heartContainer" class="hearts"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
