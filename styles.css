@@ -176,3 +176,45 @@ body {
   .countdown { gap:8px; }
   .countdown div { min-width:56px; padding:8px; }
 }
+
+
+/* main page*/
+.hidden {
+  display: none;
+}
+
+.links a {
+  display: inline-block;
+  margin: 15px;
+  text-decoration: none;
+  color: #034078;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.links a:hover {
+  background: rgba(255,255,255,0.6);
+  transform: scale(1.05);
+}
+
+
+/* Confetti styles */
+.confetti {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  top: -10px;
+  animation: fall linear forwards;
+  animation-duration: 6s;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
