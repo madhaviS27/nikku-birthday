@@ -1,13 +1,24 @@
 // Countdown setup
-const countdownDate = new Date("Nov 19, 2025 00:00:00").getTime();
 
+// const countdownDate = new Date("Nov 19, 2025 00:00:00").getTime();  //actual birthday date
+
+const countdownDate = new Date().getTime() + 5000; // 5 seconds test
+
+// Countdown logic
 const countdownFunction = setInterval(() => {
   const now = new Date().getTime();
   const distance = countdownDate - now;
 
   if (distance < 0) {
     clearInterval(countdownFunction);
-    window.location.href = "main.html"; // redirect after countdown ends
+
+    triggerConfetti();  // Trigger confetti before redirect
+
+    // Wait for 3 seconds before redirecting to main page
+    setTimeout(() => {
+      window.location.href = "main.html";
+    }, 3000);
+
   } else {
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -20,6 +31,31 @@ const countdownFunction = setInterval(() => {
 }, 1000);
 
 const container = document.querySelector(".floating-elements");
+
+
+// 🎉 Confetti Function (this must be outside any other function)
+function triggerConfetti() {
+  for (let i = 0; i < 500; i++) {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = randomColor();
+    confetti.style.animationDuration = (5 + Math.random() * 4) + "s";
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 9000);
+  }
+}
+
+// 🌈 Random color generator for confetti
+function randomColor() {
+  const colors = [
+    "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf",
+    "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+  ];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
 
 // 🎈 Create floating balloons dynamically
 function createBalloon() {
@@ -106,3 +142,4 @@ function spawnHeartsBurst(count = 18){
     setTimeout(()=> spawnHeart({size: 14 + Math.random()*28, bottom: 30 + Math.random()*40}), i*60);
   }
 }
+
