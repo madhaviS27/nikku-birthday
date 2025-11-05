@@ -270,7 +270,7 @@ body {
 .firework-particle {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0;  
   width: 6px;
   height: 6px;
   border-radius: 50%;
