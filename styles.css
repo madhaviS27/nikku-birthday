@@ -218,3 +218,114 @@ body {
     opacity: 0;
   }
 }
+
+
+
+/* 🎆 Fireworks styling */
+.fireworks-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Each burst origin */
+.firework-burst {
+  position: absolute;
+  top: calc(30% + (40% * var(--randY, 0)));
+  left: calc(20% + (60% * var(--randX, 0)));
+  transform: translate(-50%, -50%);
+}
+
+/* Particles */
+/* 🌌 Fireworks Container */
+.fireworks-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Rocket trail + burst origin */
+.firework-rocket {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 20px;
+  background: radial-gradient(circle, white, var(--color, #fff));
+  filter: drop-shadow(0 0 6px var(--color, #fff));
+  border-radius: 2px;
+  animation: firework-launch 1s ease-out forwards;
+}
+
+/* Spark particles for explosion */
+.firework-particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0.95;
+  background: radial-gradient(circle, white, var(--color, #a0c4ff));
+  animation: firework-explode 1.8s ease-out forwards;
+  filter: drop-shadow(0 0 6px currentColor)
+          drop-shadow(0 0 10px currentColor)
+          drop-shadow(0 0 14px currentColor);
+}
+
+/* Rocket trail (after pseudo-element) */
+.firework-rocket::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 25px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
+  filter: blur(1px);
+  animation: trail-flicker 0.15s infinite alternate;
+}
+
+/* Rocket flying up animation */
+@keyframes firework-launch {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-70vh);
+    opacity: 0.8;
+  }
+}
+
+/* Flicker effect for rocket trail */
+@keyframes trail-flicker {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Explosion animation for sparkles */
+@keyframes firework-explode {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(var(--x), var(--y)) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x) * 1.3), calc(var(--y) * 1.3)) scale(0.8);
+    opacity: 0;
+  }
+}
