@@ -12,12 +12,14 @@ const countdownFunction = setInterval(() => {
   if (distance < 0) {
     clearInterval(countdownFunction);
 
-    triggerConfetti();  // Trigger confetti before redirect
+    // 💥 Trigger both confetti and fireworks
+    triggerConfetti();
+    triggerFireworks();
 
-    // Wait for 3 seconds before redirecting to main page
+    // Wait for 5 seconds before redirecting to main page
     setTimeout(() => {
       window.location.href = "main.html";
-    }, 3000);
+    }, 5000);
 
   } else {
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -47,14 +49,119 @@ function triggerConfetti() {
   }
 }
 
+
 // 🌈 Random color generator for confetti
 function randomColor() {
   const colors = [
-    "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf",
-    "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
+    // ✨ Sparkly whites & golds
+    "#ffffff", // bright white sparkle
+    "#fff8dc", // soft golden glow (cornsilk)
+    "#ffe4b5", // light golden
+    "#ffecb3", // pale warm gold
+    "#fff5ba", // light gold shimmer
+
+    // 💙 Dreamy blues
+    "#a0c4ff", // sky blue
+    "#89cff0", // baby blue
+    "#5eb8ff", // radiant blue sparkle
+    "#b3ecff", // frosty blue highlight
+    "#afffff", // pale aqua
+
+    // 💜 Romantic lavenders
+    "#d5b3ff", // pastel lavender
+    "#cdb4ff", // soft purple glow
+    "#e0b0ff", // orchid sparkle
+    "#bdb2ff", // lavender
+    "#e7d9ff", // dreamy lilac
+
+    // 💖 Warm dreamy pinks
+    "#ffc6ff", // cotton candy
+    "#ffadad", // rose blush
+    "#ff9ecd", // pink flare
+    "#ffadad", // soft pink
+    "#ffc6ff", // blush pink
+    "#f6baff",  // cotton candy pink
+
+    // 💛 Magical warm tones
+    "#FFDAB9", // classic peach
+    "#FFE5B4", // soft peach
+    "#ffcc70", // sunset gold
+    "#fff5ba", // buttery shimmer
+
+    // 💚 Soft minty glow
+    "#caffbf", // mint green
+    "#baf1a1"  // subtle emerald highlight
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
+
+
+
+// 🎆 Fireworks function
+function triggerFireworks() {
+  const fireworksContainer = document.createElement("div");
+  fireworksContainer.classList.add("fireworks-container");
+  document.body.appendChild(fireworksContainer);
+
+  // Launch multiple bursts
+  for (let i = 0; i < 8; i++) {
+    setTimeout(() => {
+      createFireworkBurst(fireworksContainer);
+    }, i * 600); // staggered launches
+  }
+
+  // Remove after the show ends
+  setTimeout(() => fireworksContainer.remove(), 10000);
+}
+
+// Create one firework burst
+function createFireworkBurst() {
+  const container = document.querySelector(".fireworks-container");
+  const rocket = document.createElement("div");
+  rocket.classList.add("firework-rocket");
+
+  // Randomize rocket color and horizontal position
+  rocket.style.setProperty("--color", randomColor());
+  rocket.style.left = `${Math.random() * 80 + 10}%`;
+  container.appendChild(rocket);
+
+  // Once rocket finishes launch animation → trigger burst
+  rocket.addEventListener("animationend", () => {
+    const burst = document.createElement("div");
+    burst.classList.add("firework-burst");
+
+    // Position burst at rocket’s end location
+    const rocketRect = rocket.getBoundingClientRect();
+    burst.style.left = `${rocketRect.left + rocketRect.width / 2}px`;
+    burst.style.top = `${rocketRect.top}px`;
+
+    const numParticles = 40;
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement("div");
+      particle.classList.add("firework-particle");
+
+      const angle = (i / numParticles) * 2 * Math.PI;
+      const distance = 60 + Math.random() * 50;
+      const x = Math.cos(angle) * distance;
+      const y = Math.sin(angle) * distance;
+
+      particle.style.setProperty("--x", `${x}px`);
+      particle.style.setProperty("--y", `${y}px`);
+      particle.style.setProperty("--color", randomColor());
+      burst.appendChild(particle);
+    }
+
+    container.appendChild(burst);
+    rocket.remove();
+
+    // Cleanup burst after animation
+    setTimeout(() => burst.remove(), 2000);
+  });
+
+  // Cleanup rocket after launch
+  setTimeout(() => rocket.remove(), 1500);
+}
+
 
 
 // 🎈 Create floating balloons dynamically
