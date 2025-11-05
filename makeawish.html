@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make a Wish</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* no scrollbars */
+    }
+
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;  /* makes it fill the screen responsively */
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="makeawish2.mov" type="video/quicktime">
+  </video>
+
+</body>
+</html>
